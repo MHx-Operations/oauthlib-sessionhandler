@@ -38,7 +38,7 @@ logger.info("logging startetd")
 
 oash = oauthlib_sessionhandler.OAuthLibSessionHandler(
     wellknown_url=os.getenv('OASH_OIDCCONFIG_URL'),
-    client_id='oash-testclient',
+    client_id=os.getenv('OASH_CLIENT'),
     username=os.getenv('OASH_USERNAME'),
     password=os.getenv('OASH_PASSWORD'),
     # password='notAValidPassword',
