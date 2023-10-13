@@ -2,9 +2,6 @@ from setuptools import setup
 setup(
     name='oauthlib_sessionhandler',
     packages=['oauthlib_sessionhandler'],
-    package_dir={
-        'oauthlib_sessionhandler': '',
-    },
     version='0.9.0',
     description='provides convenient session handling for OAuth, accessible via python API and CLI',
     author='Markus Hof',
