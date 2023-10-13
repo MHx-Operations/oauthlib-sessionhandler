@@ -81,5 +81,5 @@ Links:
 To do:
 
 - [ ] CLI
-- [ ] package pip installation
+- [x] pip installation
 - [ ] package for pypi.org
