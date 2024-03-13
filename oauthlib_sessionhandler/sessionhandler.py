@@ -12,7 +12,7 @@ class OAuthLibSessionHandler():
                  token_url : str = None,
                  
                  client_id : str = None,
-
+                 client_secret : str = None,
                  username : str = None,
                  password : str = None,
 
@@ -27,6 +27,7 @@ class OAuthLibSessionHandler():
         self.client_id = client_id
         self.username = username
         self.password = password
+        self.client_secret = client_secret
         
         self.oidc_userinfo_url = self.__set_ifnotnone_or_empty(oidc_userinfo_url)
         self.oidc_end_session_url = self.__set_ifnotnone_or_empty(oidc_end_session_url)
@@ -40,7 +41,10 @@ class OAuthLibSessionHandler():
         self.logger = logging.getLogger(__name__)
         self.logger.debug("initalized")
 
-        self.client = LegacyApplicationClient(client_id=self.client_id)
+        if client_secret:
+            self.client = BackendApplicationClient(client_id=self.client_id)
+        else:
+            self.client = LegacyApplicationClient(client_id=self.client_id)
         self.session = OAuth2Session(client=self.client)
 
     @staticmethod
@@ -123,7 +127,8 @@ class OAuthLibSessionHandler():
             self.session.fetch_token(
                 token_url=self._get_token_url(), 
                 username=self.username, 
-                password=self.password
+                password=self.password,
+                client_secret=self.client_secret
             )
 
         except Exception as e:
